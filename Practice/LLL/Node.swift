@@ -9,5 +9,10 @@
 import UIKit
 
 class Node<T> {
-    
+    let value: T
+    var next : Node<T>?
+    required init(_ value: T) {
+        self.value = value
+    }
 }
+

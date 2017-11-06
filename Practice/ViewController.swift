@@ -15,7 +15,6 @@ struct DataStructures {
     }
 }
 
-
 class ViewController: UITableViewController {
 
     var dataStructuresArray: [DataStructures] {
@@ -34,6 +33,7 @@ class ViewController: UITableViewController {
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.view.backgroundColor = .white
         self.tableView.register(DataStructuresCell.self, forCellReuseIdentifier: "CellID")
+        self.tableView.clearFooter()
     }
 }
 
@@ -48,6 +48,13 @@ extension ViewController {
         let dataStructure = dataStructuresArray[indexPath.item]
             cell?.dataStructure = dataStructure
         return cell ?? UITableViewCell()
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let layFlowLayout = UICollectionViewFlowLayout()
+        let dataStructure = DataStructuresView(collectionViewLayout: layFlowLayout)
+        let root = UINavigationController(rootViewController: dataStructure)
+        navigationController?.present(root, animated: true, completion: nil)
     }
 }
 
@@ -73,5 +80,13 @@ class DataStructuresCell: UITableViewCell {
         
         nameLabel.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
         nameLabel.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+    }
+}
+
+extension UITableView {
+    func clearFooter() {
+        let footerView = UIView(frame: .zero)
+            footerView.backgroundColor = .white
+        self.tableFooterView = footerView
     }
 }

@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(rootViewController: ViewController())
         
-        UINavigationBar.appearance().barTintColor = .cyan
+        UINavigationBar.appearance().barTintColor = .green
         
         return true
     }
